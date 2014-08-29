@@ -1,15 +1,20 @@
-$( document ).ready(function() {
-	$('#chart_section').hide();
-});
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
 
-var hideSearch=function(){
-	$('#search_section').hide();
-};
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<style type="text/css">
+${demo.css}
+		</style>
+		<script type="text/javascript">
+$(function () {
 
-function generateChart(sn){
-	$.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=analytics.csv&callback=?', function (csv) {
-
-        $('#mychart').highcharts({
+    // Get the CSV and create the chart
+    $.getJSON('http://www.highcharts.com/samples/data/jsonp.php?filename=analytics.csv&callback=?', function (csv) {
+        
+        $('#container').highcharts({
 
             data: {
                 csv: csv,
@@ -23,7 +28,7 @@ function generateChart(sn){
             },
 
             title: {
-                text: sn+'\'s Psych Plot'
+                text: 'Daily visits at www.highcharts.com'
             },
 
             subtitle: {
@@ -94,8 +99,8 @@ function generateChart(sn){
                                         y: e.pageY
                                     },
                                     headingText: this.series.name,
-                                    maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
-                                        this.y + ' visits',
+                                    maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) +':<br/> '+
+                                        this.y +' visits',
                                     width: 200
                                 });
                             }
@@ -105,57 +110,36 @@ function generateChart(sn){
                         lineWidth: 1
                     }
                 }
-            }
+            },
+
+            series: [{
+                name: 'All visits',
+                lineWidth: 4,
+                marker: {
+                    radius: 4
+                }
+            }, {
+                name: 'New visitors'
+            }]
         });
     });
 
-	
-}
-
-
-var drawGraph=function(sn){
-	Q(jQuery.ajax({
-	    url: 'foo.php',
-	    type: 'post',
-	    dataType: 'json',
-	    data: {screenname: sn}
-	})).then(function(json) {
-	    	addSeries([[Date.UTC(2014,8,20), -0.2],[Date.UTC(2014,8,21), -0.3],[Date.UTC(2014,8,22), -0.5],[Date.UTC(2014,8,23), 0.2]],true);
-	    	//add series
-	    }, function(){
-	    	alert('err');
-	    })
-};
-
-function addSeries(data,visible){
-	var chart = $('#mychart').highcharts();
-	chart.addSeries({
-		name: 'Anxiety level',
-		data: data,
-		visible: visible,
-		lineWidth: 4,
-        marker: {
-            radius: 4
-        }
-	});
-	chart.redraw();
-	
-}
-
-
-$('#search').click(function() {
-	var sn=$('#sn').val();
-	if(sn==''){alert('Please enter a screenname!');}
-	else{
-		Q.fcall(hideSearch)
-		.then(function(){$('#loader1').show();})
-		.then(function(){generateChart(sn);})
-		.then(drawGraph(sn))
-		.then(function(){$('#loader1').hide();$('#mychart').show();})
-	}
 });
 
 
+		</script>
+	</head>
+	<body>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/modules/data.js"></script>
+<script src="../../js/modules/exporting.js"></script>
 
+<!-- Additional files for the Highslide popup effect -->
+<script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide-full.min.js"></script>
+<script type="text/javascript" src="http://www.highcharts.com/media/com_demo/highslide.config.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="http://www.highcharts.com/media/com_demo/highslide.css" />
 
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+	</body>
+</html>

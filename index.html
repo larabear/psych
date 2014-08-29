@@ -28,7 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -92,7 +92,7 @@
                 <h2>Enter your twitter screen name</h2>
                 <form role="form">
                     <div class="form-group">
-                        <div class="col-md-7 col-lg-offset-1"><input type="text" class="form-control input-lg "></div>
+                        <div class="col-md-7 col-lg-offset-1"><input type="text" class="form-control input-lg " id="sn"></div>
                         <div class="col-md-3"><span class="btn btn-default btn-lg" id="search"><i class="fa fa-twitter fa-fw"></i>Psych it!</span></div>
                     </div>
                 </form>                
@@ -102,9 +102,13 @@
         <div class="row" id="loader1" style="display:none;opacity: 0.6;">
             <div class="col-lg-2 col-lg-offset-5">
                 <img src="img/loader.gif">
-                           
             </div>
         </div>
+
+
+        <div class="row" >
+			<div id="mychart" style=""></div>
+		</div>
 
         <div class="row" id="chart_section">
             <div class="col-lg-8 col-lg-offset-2">
@@ -129,7 +133,13 @@
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
 
+	<script src="q/q.js"></script>
     <!-- custom js -->
+
+    <script type="text/javascript" src="Highcharts-4.0.3/js/highcharts.js"></script>
+    <script type="text/javascript" src="Highcharts-4.0.3/js/highcharts.js"></script>
+    <script type="text/javascript" src="Highcharts-4.0.3/js/themes/dark-unica.js"></script>
+
     <script src="js/myjs.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -137,13 +147,13 @@
 
     <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
-
+	
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
-
+    
 </body>
 
 </html>
